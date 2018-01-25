@@ -12,6 +12,13 @@ targetValues = [[0], [0], [0], [0], [0], [0], [0], [0], [0], [0], [0], [0], [0],
 
 inputValues = inputGenerator.generateInput(len(targetValues))
 			  
+def plotValues(plotThis):
+	for counter in range(0, len(plotThis)):
+		plt.scatter(plotThis[counter][0], plotThis[counter][1])
+	plt.xlabel("x-axis")
+	plt.ylabel("y-axis")
+	plt.show()
+			  
 def startProg(someData, input, target):
 	X_train, X_test, y_train, y_test = train_test_split(input, target, random_state=0)
 	knn = Kn(n_neighbors=1)
@@ -19,7 +26,11 @@ def startProg(someData, input, target):
 	result = knn.predict([someData])
 	print("predict() returned: ", result)
 	
+startProg([0, 9], inputValues, targetValues)
+startProg([4, 7], inputValues, targetValues)
 startProg([11, 19], inputValues, targetValues)
-	
+startProg([12, 17], inputValues, targetValues)	
+startProg([0, 20], inputValues, targetValues)	
 
+plotValues(inputValues)
 
