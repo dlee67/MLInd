@@ -13,7 +13,7 @@ from sklearn.neighbors import KNeighborsClassifier as Kn
 iris_dataset = load_iris()
 
 print("Iris target value is: ", iris_dataset['target_names'])
-print("Iris target description is: ", iris_dataset['target'])
+print("Iris target description is: ", iris_dataset['target_names'])
 
 X_train, X_test, y_train, y_test = train_test_split(iris_dataset['data'], iris_dataset['target'], random_state=0)
 
