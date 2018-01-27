@@ -11,8 +11,28 @@ targetValues = [[0], [0], [0], [0], [0], [0], [0], [0], [0], [0], [0], [0], [0],
 
 inputValues = inputGenerator.generateInput(len(targetValues))
 
-mySVM = LinearSVC(C=1)
-mySVM.fit(inputValues, targetValues)
+svm = LinearSVC(C=1)
+svm.fit(inputValues, targetValues)
 
-print(mySVM.coef_)
-print(mySVM.intercept_)
+for counter in range(0, len(inputValues)):
+		plt.scatter(inputValues[counter][0], inputValues[counter][1])
+
+#This entire thing has to do with the SVC,
+#and it's more mathematically incorporated
+#than I'd thought.
+#Thus, if full understanding of 
+w = svm.coef_[0]; print("w is:", w)
+a = -w[0] / w[1]; print("a is:", a) # This represents slope, but I am still not sure
+									# why we have to put a unary minus in there.
+xx = np.linspace(0, 20); print("xx is:", xx)
+yy = a * xx - (svm.intercept_[0]) / w[1]; print("yy is:", yy) #Don't know why intercept (which
+															  #is referred as an independent value, sometimes)
+															  # is being divided by the w[1].
+plt.plot(xx, yy, c='k')
+plt.show()
+
+#Next time I comeback to this concept, I need to go over the SVC as a mathematical study.
+
+print("My coef's are: ", mySVM.coef_)
+print("My intercept is: ", mySVM.intercept_)
+print("My slope should be: ", (mySVM.coef_[0][0]/mySVM.coef_[0][1])) 
