@@ -6,6 +6,8 @@ import inputGenerator
 from scipy import sparse
 from sklearn.model_selection import train_test_split
 from sklearn.neighbors import KNeighborsClassifier as Kn
+from sklearn.linear_model import LogisticRegression
+from sklearn.svm import LinearSVC
 
 targetValues = [[0], [0], [0], [0], [0], [0], [0], [0], [0], [0], [0], [0], [0], [0],
 			  [1], [1], [1], [1], [1], [1], [1], [1], [1], [1], [1], [1], [1], [1]]
@@ -18,7 +20,11 @@ def plotValues(plotThis):
 	plt.xlabel("x-axis")
 	plt.ylabel("y-axis")
 	plt.show()
-			  
+
+def plotContour(plotThis):
+	plt.contour(plotThis)
+	plt.show()
+	
 def startProg(someData, input, target):
 	X_train, X_test, y_train, y_test = train_test_split(input, target, random_state=0)
 	knn = Kn(n_neighbors=1)
@@ -33,4 +39,4 @@ startProg([12, 17], inputValues, targetValues)
 startProg([0, 20], inputValues, targetValues)	
 
 plotValues(inputValues)
-
+plotContour(inputValues)
