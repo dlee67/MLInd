@@ -21,11 +21,11 @@ def plotValues(plotThis):
 	plt.ylabel("y-axis")
 	plt.show()
 
-def startProg(someData, input, target):
+def startProg(predictThis, input, target):
 	X_train, X_test, y_train, y_test = train_test_split(input, target, random_state=0)
 	knn = Kn(n_neighbors=1)
 	knn.fit(X_train, y_train)
-	result = knn.predict([someData])
+	result = knn.predict([predictThis])
 	print("predict() returned: ", result)
 	
 startProg([0, 9], inputValues, targetValues)

@@ -31,6 +31,8 @@ myKnn = knn.fit(X_train, y_train)
 guess_this = np.array([[5, 2.9, 1, 0.2]])
 prediction = knn.predict(guess_this)
 print(prediction)
+
+plt.show()
 							
 #someStuff = pd.DataFrame([[1, 2, 3], [1,2,3], [1,2,3]], columns=["Super Saiyan", "Super Saiyan 2", "Super Saiyan 3"])
 #print(someStuff)	
