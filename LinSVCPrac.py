@@ -1,6 +1,7 @@
 #https://stackoverflow.com/questions/46511017/plot-hyperplane-linear-svm-python
 #The link above seems to demonstrate what I am looking for.
-#
+#http://scikit-learn.org/0.18/auto_examples/svm/plot_separating_hyperplane.html
+#In fact, it's derived from an official documentation.
 
 import matplotlib.pyplot as plt
 import numpy as np
