@@ -21,13 +21,24 @@ def plotValues(plotThis):
 	plt.ylabel("y-axis")
 	plt.show()
 
+def plotRegression(inputValues, targetValues):
+	svm = LinearSVC(C=1)
+	svm.fit(inputValues, targetValues)
+	w = svm.coef_[0]
+	a = -w[0]/w[1]
+	xx = np.linspace(0, 20)
+	yy = a * xx - (svm.intercept_[0]) / w[1]
+	for counter in range(0, len(inputValues)):
+		plt.scatter(inputValues[counter][0], inputValues[counter][1])
+	plt.plot(xx, yy)
+	plt.show()
+	
 def startProg(predictThis, input, target):
-	X_train, X_test, y_train, y_test = train_test_split(input, target, random_state=0)
 	knn = Kn(n_neighbors=1)
-	knn.fit(X_train, y_train)
+	knn.fit(input, target)
 	result = knn.predict([predictThis])
 	print("predict() returned: ", result)
-	
+
 startProg([0, 9], inputValues, targetValues)
 startProg([4, 7], inputValues, targetValues)
 startProg([11, 19], inputValues, targetValues)
@@ -35,3 +46,4 @@ startProg([12, 17], inputValues, targetValues)
 startProg([0, 20], inputValues, targetValues)	
 
 plotValues(inputValues)
+plotRegression(inputValues, targetValues)
