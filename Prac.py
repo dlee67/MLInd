@@ -8,38 +8,30 @@ from sklearn.decomposition import PCA
 
 import matplotlib.pyplot as plt
 import mglearn
+import numpy as np
 
 cancer = load_breast_cancer()
-X_train, X_test, y_train, y_test = train_test_split(cancer.data, cancer.target,
-                                                    random_state=1)
-
-print("Shape of the input training data: ", X_train.shape)
-print("Shape of the target training data: ", y_train.shape)													
+X_train, X_test, y_train, y_test = train_test_split(cancer.data, cancer.target, random_state=1)
 
 #Demonstration that those two work pretty much the similar.
 #scaler = MinMaxScaler()	
-#scaler = StandardScaler()
-#scaler.fit(cancer.data)
-#X_scaled = scaler.transform(cancer.data)
-
 #PCA is super powerful...
-#pca = PCA(n_components=2)
-#pca.fit(X_scaled)
-#X_pca = pca.transform(X_scaled)
-#
-#plt.figure(figsize=(8, 8))
-#
-#print(X_pca[:, 0])
-#print(X_pca[:, 1])
-#print(cancer.target)
-#
-#plt.legend(cancer.target_names, loc="best")
-#mglearn.discrete_scatter(X_pca[:, 0], X_pca[:, 1], cancer.target)
-#plt.legend(cancer.target_names, loc="best")
-#plt.gca().set_aspect("equal")
-#plt.xlabel("First principal component")
-#plt.ylabel("Second principal component")
-#plt.show()
+
+scaler = StandardScaler()
+scaler.fit(cancer.data)
+X_scaled = scaler.transform(cancer.data)
+pca = PCA(n_components=2)
+pca.fit(X_scaled)
+X_pca = pca.transform(X_scaled)
+plt.figure(figsize=(8, 8))
+
+plt.legend(cancer.target_names, loc="best")
+mglearn.discrete_scatter(X_pca[:, 0], X_pca[:, 1], cancer.target)
+plt.legend(cancer.target_names, loc="best")
+plt.gca().set_aspect("equal")
+plt.xlabel("First principal component")
+plt.ylabel("Second principal component")
+plt.show()
 
 #print("Original shape: {}".format(str(X_scaled.shape)))
 #print("Reduced shape: {}".format(str(X_pca.shape)))
