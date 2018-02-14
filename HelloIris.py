@@ -33,27 +33,4 @@ prediction = knn.predict(guess_this)
 print(prediction)
 
 plt.show()
-							
-#someStuff = pd.DataFrame([[1, 2, 3], [1,2,3], [1,2,3]], columns=["Super Saiyan", "Super Saiyan 2", "Super Saiyan 3"])
-#print(someStuff)	
-
-#from sklearn.cross_validation import train_test_split
-#from sklearn.linear_model import LogisticRegressionCV
-#
-#from keras.models import Sequential
-#from keras.layers.core import Dense, Activation
-#from keras.utils import np_utils
-
-#A numpy array looks like this.
-#x = np.array([[1, 2, 3], [4, 5, 6]])
-#print("x:\n{}".format(x));
-
-#A demo of scipy in action.
-#eye = np.eye(4) #Assigns an identity matrix of 4 by 4 for variable eye.
-#print(eye);
-#sparse_matrix = sparse.csr_matrix(eye);
-#print("\nScipy sparse CSR matrix:\n{}".format(sparse_matrix))
-#
-#data = np.ones(4)
-#print(data)
 
