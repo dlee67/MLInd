@@ -1,3 +1,6 @@
+# Turns out, read() doesn't return anything.
+# https://stackoverflow.com/questions/3211031/python-file-read
+
 import nltk
 
 class WordTagger(object):
