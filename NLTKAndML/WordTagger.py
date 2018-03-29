@@ -1,6 +1,5 @@
 # Turns out, read() doesn't return anything.
 # https://stackoverflow.com/questions/3211031/python-file-read
-
 import nltk
 
 class WordTagger(object):
@@ -10,6 +9,8 @@ class WordTagger(object):
         self.needsTagging = None
         self.afterReading = None
         self.tokens = None
+        self.triggerPattern =["Thank you", "taking time to apply", "qualification?s",
+        "Dear *[a-zA-Z]"]
         self.verboseMode = False
         print("WordTagger has been innitialized.")
 
