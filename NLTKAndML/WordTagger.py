@@ -5,14 +5,38 @@ import nltk
 class WordTagger(object):
 
     def __init__(self):
-        self.isJobCounter = 0
+        self.isCounter = 0
         self.needsTagging = None
         self.afterReading = None
         self.tokens = None
-        self.triggerPattern =["Thank you", "taking time to apply", "qualification?s",
-        "Dear *[a-zA-Z]"]
+        self.triggerPattern =[]
         self.verboseMode = False
+        self.isCategory = False
         print("WordTagger has been innitialized.")
+
+    def printAfterReading(self):
+        print("Consumed content\n:", self.afterReading, "\n")
+
+    def printTriggerPattern(self):
+        print("The patterns for incrementing the counter is: ", self.triggerPattern[:])
+
+    def printCounter(self):
+        print("Currently, the amount of counter is: ", self.isCounter)
+
+    def matchPattern(self):
+        freqDist = nltk.FreqDist(self.tokens)
+        for pattern in self.triggerPattern:
+            print("Current pattern: ", pattern)
+            print("Current frequency of the pattern: ", freqDist[pattern])
+            self.isCounter = self.isCounter + freqDist[pattern]
+
+#The method below was created with regex pattern in mind.
+    def addTriggerPattern(self, userInput):
+        if(self.verboseMode):
+            print("In the addTriggerPattern block.")
+        self.triggerPattern.append(str(userInput))
+        if(self.verboseMode):
+            print("The list of trigger pattern is: ", triggerPattern[:])
 
     def verboseModeOn(self):
         self.verboseMode = True
@@ -28,15 +52,18 @@ class WordTagger(object):
             print("In the block for tokenizeNeedsTagging.")
         self.tokens = nltk.word_tokenize(self.afterReading)
 
-    def countFrequency(self, findThis):
+    def countFrequency(self, findThis, limit=3):
         fDistObj = nltk.FreqDist(self.tokens)
         if(self.verboseMode):
             print("Consumed:", fDistObj.keys())
         amtOfOccur = fDistObj[findThis]
         #I am guessing the frequency distribution cannot consume anything aside from
         #tokenized string.
-        if(self.verboseMode):
-            print("The word", findThis, "has occured this much:", amtOfOccur)
+        print("The word", findThis, "has occured this much:", amtOfOccur)
+        if(limit > 3):
+            if(input("The frequency of the specified token has occured for more than 3 times, increase the counter? Type n for no") == "n"):
+                return;
+            isCounter = isCounter + 1
 
     def toString(self):
         print("The needTagging is: ", self.needTagging.read(),
